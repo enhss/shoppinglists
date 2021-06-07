@@ -5,6 +5,17 @@
         <title>Shoppinglists</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+        <style>
+            .button-list {
+                display: flex;
+            }
+            .button-list form {
+                margin-right: 1rem;
+            }
+            .button-list form:last-child {
+                margin-right: 0;
+            }
+        </style>
     </head>
 
     <body>

@@ -14,7 +14,11 @@
                         {{-- 投稿内容 --}}
                         <p class="mb-0">{!! nl2br(e($shoppinglist->content)) !!}</p>
                     </div>
-                    <div>
+                    <div class='button-list'>
+                        {{-- 購入済ボタン --}}
+                        @include('bought.bought_button')
+                        {{-- 保留ボタン --}}
+                        @include('stay.stay_button')
                         @if (Auth::id() == $shoppinglist->user_id)
                             {{-- 投稿削除ボタンのフォーム --}}
                             {!! Form::open(['route' => ['shoppinglists.destroy', $shoppinglist->id], 'method' => 'delete']) !!}

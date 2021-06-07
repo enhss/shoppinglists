@@ -24,6 +24,19 @@ Route::post('login', 'Auth\LoginController@login')->name('login.post');
 Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 Route::group(['middleware' => ['auth']], function () {
+    Route::group(['prefix' => 'users/{id}'], function () {
+        Route::get('boughts', 'UsersController@boughts')->name('users.boughts');
+        Route::get('stays', 'UsersController@stays')->name('users.stays');
+    });
+    
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+    
+    Route::group(['prefix' => 'shoppinglists/{id}'], function () {
+        Route::post('bought', 'BoughtsController@store')->name('boughts.bought');
+        Route::delete('notbought', 'BoughtsController@destroy')->name('boughts.notbought');
+        Route::post('stay', 'StaysController@store')->name('stays.stay');
+        Route::delete('notstay', 'StaysController@destroy')->name('stays.notstay');
+    });
+    
     Route::resource('shoppinglists', 'ShoppinglistsController', ['only' => ['store', 'destroy']]);
 });

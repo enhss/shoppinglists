@@ -36,4 +36,52 @@ class UsersController extends Controller
             'shoppinglists' => $shoppinglists,
         ]);
     }
+    
+     /**
+     * ユーザの購入済一覧ページを表示するアクション。
+     *
+     * @param  $id  ユーザのid
+     * @return \Illuminate\Http\Response
+     */
+    public function boughts($id)
+    {
+        // idの値でユーザを検索して取得
+        $user = User::findOrFail($id);
+
+        // 関係するモデルの件数をロード
+        $user->loadRelationshipCounts();
+
+        // ユーザの購入済一覧を取得
+        $boughts = $user->boughts()->paginate(10);
+
+        // 購入済一覧ビューでそれらを表示
+        return view('users.boughts', [
+            'user' => $user,
+            'shoppinglists' => $boughts,
+        ]);
+    }
+    
+     /**
+     * ユーザの保留一覧ページを表示するアクション。
+     *
+     * @param  $id  ユーザのid
+     * @return \Illuminate\Http\Response
+     */
+    public function stays($id)
+    {
+        // idの値でユーザを検索して取得
+        $user = User::findOrFail($id);
+
+        // 関係するモデルの件数をロード
+        $user->loadRelationshipCounts();
+
+        // ユーザの保留一覧を取得
+        $stays = $user->stays()->paginate(10);
+
+        // 保留一覧ビューでそれらを表示
+        return view('users.stays', [
+            'user' => $user,
+            'shoppinglists' => $stays,
+        ]);
+    }
 }

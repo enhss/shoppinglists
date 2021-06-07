@@ -18,7 +18,11 @@
                         <ul class="dropdown-menu dropdown-menu-right">
                             {{-- ユーザページへのリンク --}}
                             <li class="dropdown-item">{!! link_to_route('users.show', 'MyList', ['user' => Auth::id()]) !!}</li>
-                                <li class="dropdown-divider"></li>
+                            {{-- 購入済ページへのリンク --}}
+                            <li class="dropdown-item">{!! link_to_route('users.boughts', 'Boughts', ['id' => Auth::id()]) !!}</li>
+                            {{-- 保留ページへのリンク --}}
+                            <li class="dropdown-item">{!! link_to_route('users.stays', 'Stays', ['id' => Auth::id()]) !!}</li>
+                            <li class="dropdown-divider"></li>
                             {{-- ログアウトへのリンク --}}
                             <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
                         </ul>
