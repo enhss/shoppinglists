@@ -16,8 +16,19 @@
         <div class="col-sm-8">
             <ul class="nav nav-tabs nav-justified mb-3">
                 {{-- ユーザ詳細タブ --}}
-                <li class="nav-item"><a href="#" class="nav-link">MyList</a></li>
+                <li class="nav-item">
+                    <a href="{{ route('users.show', ['user' => $user->id]) }}" class="nav-link {{ Request::routeIs('users.show') ? 'active' : '' }}">
+                        MyList
+                        <span class="badge badge-secondary">{{ $user->shoppinglists_count }}</span>
+                    </a>
+                </li>
             </ul>
+            @if (Auth::id() == $user->id)
+                {{-- 投稿フォーム --}}
+                @include('shoppinglists.form')
+            @endif
+            {{-- 投稿一覧 --}}
+            @include('shoppinglists.shoppinglists')
         </div>
     </div>
 @endsection
