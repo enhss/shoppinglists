@@ -58,12 +58,8 @@ class User extends Authenticatable
      */
     public function feed_shoppinglists()
     {
-        // このユーザがフォロー中のユーザのidを取得して配列にする
-        $userIds = $this->shoppinglists()->pluck('users.id')->toArray();
-        // このユーザのidもその配列に追加
-        $userIds[] = $this->id;
-        // それらのユーザが所有する投稿に絞り込む
-        return Shoppinglist::whereIn('user_id', $userIds);
+        // 購入済＆保留されていない投稿を取得
+        return Shoppinglist::doesntHave('bought_users')->doesntHave('stay_users');
     }
     
     /**
