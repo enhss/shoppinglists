@@ -20,4 +20,4 @@
             <span class="badge badge-secondary">{{ $user->stays_count }}</span>
         </a>
     </li>
-</ul
+</ul>
